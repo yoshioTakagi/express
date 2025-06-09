@@ -17,21 +17,3 @@ router.get('/', async (req, res) => {
 
 module.exports = router;
 
-/* var express = require('express');
-var router = express.Router();
-const request = require('request');
-
-router.get('/', async (req, res) => {
-  try {
-    const response = request('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=622865d72d0b4597a52c17cca6f15f59');
-    res.json(response.data);
-    const data = JSON.parse(body);
-    res.json(data);
-  } catch (error) {
-    console.error('Error fetching news:', error);
-    res.status(500).json({ error: 'Failed to fetch news data' });
-  }
-});
-
-module.exports = router;
- */
