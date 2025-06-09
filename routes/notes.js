@@ -3,12 +3,35 @@ var router = express.Router();
 const request = require('request');
 
 router.get('/', async (req, res) => {
-request('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=622865d72d0b4597a52c17cca6f15f59', function (error, response, body) {
-if (!error && response.statusCode == 200) {
-const data = JSON.parse(body);
-res.json(data);
-}
-});
+    request('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=622865d72d0b4597a52c17cca6f15f59', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            const data = JSON.parse(body);
+            res.json(data);
+        }else{
+            console.error('Error fetching news:', error);
+            res.status(response.statusCode).json({ error: 'Failed to fetch news data'  });
+        }
+
+    });
 })
 
 module.exports = router;
+
+/* var express = require('express');
+var router = express.Router();
+const request = require('request');
+
+router.get('/', async (req, res) => {
+  try {
+    const response = request('https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=622865d72d0b4597a52c17cca6f15f59');
+    res.json(response.data);
+    const data = JSON.parse(body);
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    res.status(500).json({ error: 'Failed to fetch news data' });
+  }
+});
+
+module.exports = router;
+ */
